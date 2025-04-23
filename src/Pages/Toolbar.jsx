@@ -13,6 +13,7 @@ const Toolbar = ({
 }) => {
   const [isMinimized, setIsMinimized] = React.useState(false);
   const [isFloating, setIsFloating] = React.useState(false);
+
   const [position, setPosition] = React.useState({ x: 20, y: 20 });
   const toolbarRef = useRef(null);
 
@@ -22,13 +23,12 @@ const Toolbar = ({
         setShowThicknessControl(null);
       }
     };
-  
+
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-  
 
   useEffect(() => {
     const savedPosition = localStorage.getItem("toolbarPosition");
@@ -48,8 +48,9 @@ const Toolbar = ({
   }, [canvasWidth]);
 
   const handleStop = (e, data) => {
-    setPosition({ x: data.x, y: data.y });
-    localStorage.setItem("toolbarPosition", JSON.stringify(data));
+    const pos = { x: data.x, y: data.y };
+    setPosition(pos);
+    localStorage.setItem("toolbarPosition", JSON.stringify(pos));
   };
 
   const handleColorChange = (e) => {
@@ -65,7 +66,7 @@ const Toolbar = ({
     <Draggable
       nodeRef={toolbarRef}
       disabled={!isFloating}
-      position={isFloating ? undefined : position}
+      defaultPosition={position}
       onStop={handleStop}
     >
       <div
