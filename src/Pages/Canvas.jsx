@@ -1,6 +1,12 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
+// eslint-disable-next-line no-unused-vars
 import React, { useEffect, useRef, useState } from "react";
 import { Stage, Layer, Line } from "react-konva";
 import Toolbar from "./Toolbar";
+import AnimationBar from "../Components/AnimationBar";
+import SaveButton from "../Components/SaveButton";
+import LayersBar from "../Components/LayersBar";
 
 const Canvas = () => {
   const stageRef = useRef(null);
@@ -322,7 +328,7 @@ const Canvas = () => {
                   Width:
                   <input
                     type="range"
-                    min="500"
+                    min="1000"
                     max={window.innerWidth * 0.75}
                     value={canvasSize.width}
                     onChange={(e) =>
@@ -339,7 +345,7 @@ const Canvas = () => {
                   Height:
                   <input
                     type="range"
-                    min="300"
+                    min="400"
                     max={window.innerHeight * 0.65}
                     value={canvasSize.height}
                     onChange={(e) =>
@@ -418,7 +424,7 @@ const Canvas = () => {
         </div>
 
         {/* Layers Sidebar */}
-        <div
+        {/* <div
           className="absolute top-[100px] right-0 flex flex-col gap-2 bg-[rgba(63,84,53,0.15)] 
           border border-[rgba(63,84,53,0.14)] backdrop-blur-[15.6px] shadow-lg 
           shadow-[rgba(0,0,0,0.1)] rounded-xl p-4 text-white overflow-y-auto"
@@ -453,141 +459,40 @@ const Canvas = () => {
               <i className="ri-delete-bin-line"></i>
             </button>
           </div>
-        </div>
-
-        {/* Animation Bar */}
-        <div
-          className="mt-4 p-4 rounded-2xl bg-[rgba(63,84,53,0.15)] shadow-lg 
-      shadow-[rgba(0,0,0,0.1)] backdrop-blur-[8.6px] 
-      border border-[rgba(63,84,53,0.14)] w-full max-w-6xl flex justify-between items-center text-white absolute bottom-0 left-[50%] translate-x-[-50%]"
-        >
-          {/* Frame navigation and control */}
-          <div className="flex gap-4 items-center">
-            <button
-              title="Previous Frame"
-              onClick={prevFrame}
-              className="hover:text-blue-400 transition text-3xl"
-            >
-              <i className="ri-arrow-left-s-line"></i>
-            </button>
-            <button
-              title="Next Frame"
-              onClick={nextFrame}
-              className="hover:text-blue-400 transition text-3xl"
-            >
-              <i className="ri-arrow-right-s-line"></i>
-            </button>
-            <button
-              title="Delete Frame"
-              onClick={deleteFrame}
-              className="hover:text-red-400 transition text-xl"
-            >
-              <i className="ri-delete-bin-line"></i>
-            </button>
-            <button
-              title="Add Frame"
-              onClick={addFrame}
-              className="hover:text-emerald-400 transition text-xl"
-            >
-              <i className="ri-add-line"></i>
-            </button>
-          </div>
-
-          {/* Play/Pause Controls */}
-          <div className="flex gap-4 items-center">
-            <button
-              title="Play"
-              onClick={() => setIsPlaying(true)}
-              className="hover:text-blue-400 transition text-xl"
-            >
-              <i className="ri-play-fill"></i>
-            </button>
-            <button
-              title="Pause"
-              onClick={() => setIsPlaying(false)}
-              className="hover:text-yellow-400 transition text-xl"
-            >
-              <i className="ri-pause-fill"></i>
-            </button>
-          </div>
-
-          {/* Undo & Redo */}
-          <div className="flex gap-4">
-            <div>
-              <button
-                title="Undo"
-                onClick={handleUndo}
-                className="hover:text-lime-300 hover:scale-[1.1] transition"
-              >
-                <i className="ri-arrow-go-back-line"></i>
-              </button>
-            </div>
-
-            <div>
-              <button
-                title="Redo"
-                onClick={handleRedo}
-                className="hover:text-lime-600 hover:scale-[1.1] transition"
-              >
-                <i className="ri-arrow-go-forward-line"></i>
-              </button>
-            </div>
-          </div>
-
-          {/* Onion Skin Toggle */}
-          <div>
-            <button
-              title="Light preview of previous frame"
-              onClick={() => setShowOnionSkin(!showOnionSkin)}
-              className={`border px-3 py-1 rounded-xl transition text-lg font-medium ${
-                showOnionSkin ? "text-purple-400" : "text-gray-400"
-              }`}
-            >
-              Onion Skin
-            </button>
-          </div>
-
-          {/* Copy Button */}
-          <div>
-            <button
-              className={`${
-                copyEnabled ? "bg-blue-600" : "bg-gray-600"
-              } text-white px-4 py-2 rounded-full transition`}
-              onClick={() => setCopyEnabled((prev) => !prev)}
-            >
-              {copyEnabled ? "Copy ON" : "Copy OFF"}
-            </button>
-          </div>
-          {/* Frame Indicator */}
-          <div className="text-lg font-semibold">
-            Frame {currentFrameIndex + 1} / {frames.length}
-          </div>
-
-          {/* FPS Control */}
-          <div className="flex items-center gap-2 text-sm">
-            <label htmlFor="fps">FPS</label>
-            <input
-              id="fps"
-              type="range"
-              min="1"
-              max="30"
-              value={fps}
-              onChange={(e) => setFps(Number(e.target.value))}
-              className="w-28"
-            />
-            <span>{fps}</span>
-          </div>
-        </div>
-        {/* Save Button */}
-        <div className="mt-5 p-4 w-full max-w-[90rem] -z-10 flex justify-end items-center text-white absolute bottom-0 left-[50%] translate-x-[-50%]">
-          <button
-            onClick={saveAnimation}
-            className="text-green-400 hover:text-green-600 border-1 px-2 py-1 rounded-lg"
-          >
-            <i className="ri-save-line"></i> Save
-          </button>
-        </div>
+        </div> */}
       </main>
+
+      {/* Animation Bar */}
+      <AnimationBar
+        prevFrame={prevFrame}
+        nextFrame={nextFrame}
+        deleteFrame={deleteFrame}
+        addFrame={addFrame}
+        setIsPlaying={setIsPlaying}
+        handleUndo={handleUndo}
+        handleRedo={handleRedo}
+        showOnionSkin={showOnionSkin}
+        setShowOnionSkin={setShowOnionSkin}
+        copyEnabled={copyEnabled}
+        setCopyEnabled={setCopyEnabled}
+        currentFrameIndex={currentFrameIndex}
+        frames={frames}
+        fps={fps}
+        setFps={setFps}
+      />
+      {/* Save Button */}
+      <SaveButton 
+        saveAnimation={saveAnimation} 
+      />
+      {/* Layers SideBar */}
+      <LayersBar
+        addLayer={addLayer}
+        deleteLayer={deleteLayer}
+        canvasSize={canvasSize}
+        currentLayerIndex={currentLayerIndex}
+        setCurrentLayerIndex={setCurrentLayerIndex}
+        currentFrame={currentFrame}
+      />
     </>
   );
 };
